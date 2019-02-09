@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FindTherapist.Pages
 {
-    public class AboutModel : PageModel
+    public class AllModel : PageModel
     {
         public string Message { get; set; }
 
