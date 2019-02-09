@@ -54,12 +54,12 @@ namespace FindTherapist.DataAccess
 
         // Get By Specialty
 
-        public Therapists GetSpecialty(string Specialty)
+        public List <Therapists> GetSpecialty(string Specialty)
         {
             using (var db = _db.GetConnection())
             {
-                var sql = db.QueryFirstOrDefault<Therapists>(@"Select * from Therapists Where Specialty = @specialty", new { specialty = Specialty });
-                return sql;
+                var sql = db.Query<Therapists>(@"Select * from Therapists Where Specialty = @specialty", new { specialty = Specialty });
+                return sql.ToList();
             }
         }
 
