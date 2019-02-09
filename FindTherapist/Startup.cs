@@ -31,6 +31,9 @@ namespace FindTherapist
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            var dbInterface = new DatabaseInterface(Configuration, "FindMyTherapist");
+            services.AddSingleton<DatabaseInterface>(dbInterface);
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
