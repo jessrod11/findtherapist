@@ -3,7 +3,38 @@
 @{
     ViewData["Title"] = "All Therapist";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@Model.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        var options = {};
+        options.url = "/api/therapist/some";
+        options.type = "GET";
+        options.dataType = "json";
+        options.success = function (data) {
+
+            data.forEach(function (element) {
+                console.log("this is", element);
+                var firstName = element.firstName;
+                var lastName = element.lastName;
+                var image = element.img;
+                var specialty = element.specialty; 
+                $("#result").append("<h3>" + firstName + " " + lastName + "</h3>");
+                $("#result").append("<h5>" + specialty + "</h5>");
+                });
+            };
+        options.error = function () {
+            $("#msg").html("Error while calling the Web API!");
+        };
+        $.ajax(options);
+    });
+</script>
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<h3>@Model.Message</h3>
+<p>Some of our top therapists are listed below.</p>
+<div id="result"></div>
+<div id="msg"></div>
