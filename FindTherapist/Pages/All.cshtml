@@ -23,7 +23,12 @@
                 var image = element.img;
                 var specialty = element.specialty; 
                 $("#result").append("<h3>" + firstName + " " + lastName + "</h3>");
-                $("#result").append("<h5>" + specialty + "</h5>");
+                $('<img />')
+                    .attr('src', "" + image + "")
+                    .width('113px').height('113px')
+
+                    .appendTo($("#result"));  
+                $("#result").append("<h5>" + specialty + "</h5>");  
                 });
             };
         options.error = function () {
