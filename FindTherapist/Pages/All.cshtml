@@ -21,7 +21,8 @@
                 var firstName = element.firstName;
                 var lastName = element.lastName;
                 var image = element.img;
-                var specialty = element.specialty; 
+                var specialty = element.specialty;
+                $("#result").addClass("row");
                 $("#result").append("<h3>" + firstName + " " + lastName + "</h3>");
                 $('<img />')
                     .attr('src', "" + image + "")
