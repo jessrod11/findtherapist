@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - Find My Therapist</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-flatly.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
@@ -30,9 +30,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
                     <li><a asp-page="/All">All Therapist</a></li>
-                    <li><a asp-page="/Contact"></a>My Therapist</li>
+                    <li><a asp-page="/Saved">Saved Therapist</a></li>
                 </ul>
             </div>
         </div>
@@ -40,12 +39,12 @@
 
     <partial name="_CookieConsentPartial" />
 
-    <div class="container body-content">
+    <div class="body-content">
         @RenderBody()
-        <hr />
+         <hr />
         <footer>
-            <p>&copy; 2019 - Find My Therapist</p>
-        </footer>
+          <p class="text-center">&copy; 2019 - Find My Therapist</p>
+         </footer>
     </div>
 
     <environment include="Development">

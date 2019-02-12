@@ -1,8 +1,9 @@
 ﻿@page
-@model AllModel
+@model ContactModel
 @{
-    ViewData["Title"] = "All Therapist";
+    ViewData["Title"] = "Saved Therapist";
 }
+
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
@@ -10,36 +11,30 @@
 
     $(document).ready(function () {
 
-
-        const saveTherapist = (id) => {
-            var data = { therapistId: id };
-            var dataJson = JSON.stringify(data);
-            console.log(data);
+        const deleteTherapist = (id) => {
             $.ajax({
-                url: `api/saved/`,
-                type: 'POST',
-                data: dataJson,
-                error: function (e) {
-                    console.log(e);
-                },
-                dataType: "json",
-                contentType: "application/json"
+                url: `api/saved/${id}`,
+                type: 'DELETE',
+                success: function (result) {
+                     //Do something with the result
+                }
             });
         };
 
-        $('body').on('click', '.save', function (e) {
-            saveTherapist(e.target.id);
+        $('body').on('click','.delete', function (e) {
+            deleteTherapist(e.target.id);
             e.preventDefault();
         });
 
 
         var options = {};
-        options.url = "/api/therapist/some";
+        options.url = "/api/saved";
         options.type = "GET";
         options.dataType = "json";
         options.success = function (data) {
 
             data.forEach(function (element) {
+                console.log(element);
                 var firstName = element.firstName;
                 var lastName = element.lastName;
                 var image = element.img;
@@ -51,8 +46,7 @@
 
                     .appendTo($("#result"));
                 $("#result").append("<h5>" + specialty + "</h5>");
-                $("#result").append
-                    ("<button class= 'save' id=" + element.id + ">" + "Save" + "</button>");
+                $("#result").append("<button class='delete' id=" + element.id + ">" + "Delete" + "</button>").attr;
             });
         };
         options.error = function () {
@@ -63,16 +57,6 @@
 
 </script>
 
-<h2 class="text-center">@ViewData["Title"]</h2>
-
+<h2>@ViewData["Title"]</h2>
 <h3>@Model.Message</h3>
-
-<p>Some of our top therapists are listed below.</p>
-<div class="row">
-    <div id="result" class="col-md-3">
-
-    </div>
-</div>
-</div>
-
-<div id="msg"></div>
+<div id="result"></div>
